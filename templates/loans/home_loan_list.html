@@ -1,0 +1,108 @@
+{% extends "layouts/base.html" %}
+{% block title %}Home Loan Management{% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Home Loan Management</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Total {{ count_total }} home loans</h5>
+                            </div>
+
+                            <div class="card-block">
+                                <div class='row'>
+                                    <div class="col-8">
+                                        <b>Sort By: -</b>
+                                        <a href="{% url 'home_loan_list' %}?orderby=loan_amount">Loan Amount</a> |
+                                        <a href="{% url 'home_loan_list' %}?orderby=interest_rate">Interest Rate</a> |
+                                        <a href="{% url 'home_loan_list' %}?orderby=due_date">Due Date</a>
+                                    </div>
+                                    <div class="col-4">
+                                        <form class="form-inline mb-2">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <input type="text" 
+                                                       class="form-control" 
+                                                       name="search",
+                                                       placeholder="Search by loan number or owner"
+                                                       value="{{ search }}">
+                                            </div>
+                                            <button type="submit" class="btn btn-secondary mb-2 btn-sm">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Loan Number</th>
+                                                <th>Owner</th>
+                                                <th>Loan Amount</th>
+                                                <th>Interest Rate</th>
+                                                <th>Due Date</th>
+                                                <th>Operations</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for loan in loans %}
+                                            <tr>
+                                                <td>{{ loan.account_number }}</td>
+                                                <td>{{ loan.owner.username }}</td>
+                                                <td>{{ loan.loan_amount }}</td>
+                                                <td>{{ loan.interest_rate }}%</td>
+                                                <td>{{ loan.due_date|date:"Y-m-d" }}</td>
+                                                <td>
+                                                    <a href="{% url 'home_loan_detail' loan.pk %}" class="badge badge-warning"><i class="feather icon-eye"></i> View</a>
+                                                    <a href="{% url 'home_loan_update' loan.pk %}" class="badge badge-info"><i class="feather icon-edit"></i> Update</a>
+                                                    <a href="{% url 'home_loan_delete' loan.pk %}" class="badge badge-danger"><i class="feather icon-trash-2"></i> Delete</a>
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                            <tr>
+                                                <td colspan="6">No home loans found.</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class='col-6'>
+                                        <a href="{% url 'home_loan_create' %}" class='btn btn-primary'>Add New Loan</a>
+                                    </div>
+                                    <div class='col-6'>
+                                        <!-- Pagination placeholder if needed -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,133 @@
+{% extends "layouts/base.html" %}
+{% load book_extras %}
+
+{% block title %} Borrow Records {% endblock %} }
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">All Borrow Records</h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Total {{count_total}} records</h5>
+                            </div>
+                            {% show_messages %}
+
+
+                            <div class="card-block ">
+                                <div class='row'>
+                                    <div class="col-8">
+                                        <b>Sort By : - </b>
+                                        <a href="{% url 'record_list' %}?search={{search}}&orderby=id">Id</a>  | 
+                                        <a href="{% url 'record_list' %}?search={{ search }}&orderby=borrower">Name</a> |  
+                                        <a href="{% url 'record_list' %}?search={{ search }}&orderby=book">Book</a> | 
+                                        <a href="{% url 'record_list' %}?search={{ search }}&orderby=start_day">Start</a> |
+                                        <a href="{% url 'record_list' %}?search={{ search }}&orderby=end_day">End</a>|
+                                        <a href="{% url 'record_list' %}?search={{ search }}&orderby=closed_at">Closed date</a> |
+                                        
+                                    </div>
+   
+                                    <div class="col-auto">
+                                        <form class="form-inline mb-2">
+                                            <div class="form-group  mb-2">
+                                                <input type="text" 
+                                                       class="form-control" 
+                                                       name="search",
+                                                       id='search',
+                                                       placeholder="name or card number",
+                                                       value={{search}}
+                                                       >
+                                            </div>
+                                            <button type="submit" class="btn btn-secondary mb-2 ml-1 btn-sm">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive table-hover">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Card</th>
+                                                <th>Phone</th>
+                                                <th>Book</th>
+                                                <th>Num</th>
+                                                <th>Borrow date</th>
+                                                <th>Return date</th>
+                                                <th>Status</th>
+                                                <th>Delayed </th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% for record in records %}
+                                            <tr>
+                                                <td>{{record.borrower}}</td>  
+                                                <td>{{record.borrower_card}}</td>  
+                                                <td>{{record.borrower_phone_number}}</td>
+                                                <td>{{record.book|truncatewords:2}}</td>
+                                                <td>{{record.quantity}}</td>
+                                                <td>{{record.start_day|date:"Y-m-d"}}</td>
+                                                <td>{{record.end_day|date:"Y-m-d"}}</td>
+                                                <td>{{record.get_open_or_close_display}}</td>
+                                                {% if record.return_status == "Delayed" %}
+                                                <td class='table-danger'>{{record.return_status}} {{record.get_delay_number_days}} days</td>
+                                                {% else %}
+                                                <td class='table-success'>{{record.return_status}}</td>
+                                                {% endif %}
+                                                <td>
+                                                    <a href="{% url 'record_detail' record.pk %}" class="badge badge-warning badge-bg"><i class="feather icon-eye"></i>&nbsp;check</a>
+
+                                                    <a href="{% url 'record_delete' record.pk %}" class="badge badge-danger"><i class="feather icon-trash-2"></i>&nbsp;Delete</a>
+                                                </td>
+                                                    
+                                            </tr>
+                                            {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class='col-6'>
+                                        <a href="{% url 'record_create' %}" class='btn btn-primary'>Add New record</a>
+                                    </div>
+                                    <div class='col-6'>
+      
+                                        {% show_pagination %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}

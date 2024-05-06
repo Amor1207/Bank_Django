@@ -1,0 +1,149 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Monthly Transactions {% endblock %}
+
+{% block stylesheets %}
+<style>
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+    .chart-container {
+        background: #ffffff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    h2 {
+        color: #333;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Monthly Transactions Overview</h2>
+    <div class="chart-container">
+        <div id="amount-chart" style="width:100%; height:400px;"></div>
+    </div>
+    <div class="chart-container">
+        <div id="count-chart" style="width:100%; height:400px;"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+// Chart for Total Amount
+Highcharts.chart('amount-chart', {
+    chart: {
+        type: 'column',
+        backgroundColor: '#f8f9fa'
+    },
+    title: {
+        text: 'Monthly Total Transaction Amount',
+        style: {
+            color: '#2c3e50'
+        }
+    },
+    xAxis: {
+        categories: {{ months|safe }},
+        labels: {
+            style: {
+                color: '#7f8c8d'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Total Amount',
+            style: {
+                color: '#16a085'
+            }
+        },
+        labels: {
+            style: {
+                color: '#95a5a6'
+            }
+        }
+    },
+    tooltip: {
+        backgroundColor: '#ecf0f1',
+        style: {
+            color: '#2c3e50'
+        }
+    },
+    plotOptions: {
+        column: {
+            color: '#3498db',
+            pointPadding: 0.3,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Total Amount',
+        data: {{ totals|safe }}
+    }]
+});
+
+// Chart for Transaction Count
+Highcharts.chart('count-chart', {
+    chart: {
+        type: 'column',
+        backgroundColor: '#f8f9fa'
+    },
+    title: {
+        text: 'Monthly Transaction Count',
+        style: {
+            color: '#2c3e50'
+        }
+    },
+    xAxis: {
+        categories: {{ months|safe }},
+        labels: {
+            style: {
+                color: '#7f8c8d'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Number of Transactions',
+            style: {
+                color: '#e74c3c'
+            }
+        },
+        labels: {
+            style: {
+                color: '#95a5a6'
+            }
+        }
+    },
+    tooltip: {
+        backgroundColor: '#ecf0f1',
+        style: {
+            color: '#2c3e50'
+        }
+    },
+    plotOptions: {
+        column: {
+            color: '#e74c3c',
+            pointPadding: 0.3,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Transaction Count',
+        data: {{ counts|safe }}
+    }]
+});
+</script>
+{% endblock %}

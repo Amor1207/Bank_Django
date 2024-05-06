@@ -1,0 +1,67 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Student Loan Details {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Student Loan Details</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-graduation-cap"></i> Loan Detail : {{ studentloan.loan_number }}</h5>
+                            </div>
+                            <div class="card-block">
+                                <div class='row'>
+                                    <div class='col-6'>
+                                        <p>Loan Number: {{ studentloan.loan_number }} </p>
+                                        <p>Owner: {{ studentloan.owner.username }} </p>
+                                        <p>Loan Amount: {{ studentloan.loan_amount }} </p>
+                                        <p>Interest Rate: {{ studentloan.interest_rate }}% per annum</p>
+                                        <p>School Name: {{ studentloan.school_name }}</p>
+                                        <p>Course: {{ studentloan.course }}</p>
+                                    </div>
+                                    <div class='col-6'>
+                                        <p>Loan Start Date: {{ studentloan.start_date|date:"Y/m/d" }} </p>
+                                        <p>Loan Due Date: {{ studentloan.due_date|date:"Y/m/d" }} </p>
+                                        <p>Last updated at: {{ studentloan.updated_at|date:"Y/m/d H:i" }} </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class='col-12'>
+                                        <a href="{% url 'studentloan_list' %}" class='btn btn-primary'>Back to List</a>
+                                        <a href="{% url 'studentloan_update' student_loan.pk %}" class='btn btn-info'>Update Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

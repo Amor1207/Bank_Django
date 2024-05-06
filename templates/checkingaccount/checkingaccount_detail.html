@@ -1,0 +1,64 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Checking Account Details {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Checking Account Details</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-user-circle"></i> Account Detail : {{ checkingaccount.account_number }}</h5>
+                            </div>
+                            <div class="card-block">
+                                <div class='row'>
+                                    <div class='col-6'>
+                                        <p>Account Number: {{ checkingaccount.account_number }} </p>
+                                        <p>Owner: {{ checkingaccount.owner.username }} </p>
+                                        <p>Balance: {{ checkingaccount.balance }} </p>
+                                        <p>Account Type: Checking </p>
+                                    </div>
+                                    <div class='col-6'>
+                                        <p>Created at: {{ checkingaccount.created_at|date:"Y/m/d H:i" }} </p>
+                                        <p>Last updated at: {{ checkingaccount.updated_at|date:"Y/m/d H:i" }} </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class='col-12'>
+                                        <a href="{% url 'checkingaccount_list' %}" class='btn btn-primary'>Back to List</a>
+                                        <a href="{% url 'checkingaccount_update' checkingaccount.pk %}" class='btn btn-info'>Update Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

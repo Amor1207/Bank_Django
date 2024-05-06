@@ -1,0 +1,153 @@
+{% load book_extras %}
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-brand header-logo">
+                <a target="_blank" 
+                   href="" class="b-brand">
+                    <div class="b-bg">
+                        <i class="feather icon-trending-up"></i>
+                    </div>
+                    <span class="b-title">YJJ Bank</span>
+                </a>
+                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+            </div>
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Menu</label>
+                    </li>
+                    <li 
+                        class="nav-item {% if 'index' in segment %} active {% endif %}">
+                        <a href="/" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    <li 
+                        class="nav-item {% if request.resolver_match.url_name == 'monthly-transactions' %} active {% endif %}">
+                        <a href="{% url 'monthly-transactions' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Charts</span></a>
+                    </li>
+                    
+                    <!-- Transaction History -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Transaction History</label>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.url_name == 'transaction_list'%} active {% endif %}">
+                        <a href="{% url 'transaction_list' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">All Records</span></a>
+                    </li>
+
+                    <li   class="nav-item {% if request.resolver_match.url_name == 'transaction_add' %} active {% endif %}">
+                    <a href="{% url 'transaction_add' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Transaction</span></a>
+                </li>
+
+                    <!-- Management -->
+
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Management</label>
+                    </li>
+
+                    <!-- Management Savings -->
+                    {% url 'savingsaccount_list' as savingsaccount_list %}
+                    {% url 'savingsaccount_create' as savingsaccount_create %}
+                    {% url 'savingsaccount_delete' as savingsaccount_delete %}
+                    <li class="nav-item pcoded-hasmenu {% if request.path == savingsaccount_list or request.path == savingsaccount_create or request.path == 'savingsaccount_update' or request.path == savingsaccount_delete or request.path == 'savingsaccount_detail' %} active pcoded-trigger {% endif %}">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Savings</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="{% url 'savingsaccount_list' %}" class="">All Savings Accounts</a></li>
+                            <li class=""><a href="{% url 'savingsaccount_create' %}" class="">Open New Account</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Management Checking -->
+                    {% url 'checkingaccount_list' as checkingaccount_list %}
+                    {% url 'checkingaccount_create' as checkingaccount_create %}
+                    {% url 'checkingaccount_delete' as checkingaccount_delete %}
+                    <li class="nav-item pcoded-hasmenu {% if request.path == checkingaccount_list or request.path == checkingaccount_create or  request.path == checkingaccount_delete or request.path == 'checkingaccount_update' or request.path == 'checkingaccount_detail' %} active pcoded-trigger {% endif %}">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Checking</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="{% url 'checkingaccount_list' %}" class="">All Checking Accounts</a></li>
+                            <li class=""><a href="{% url 'checkingaccount_create' %}" class="">Open New Accoun</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Management Loan -->
+                    {% url 'home_loan_list' as home_loan_list %}
+                    {% url 'student_loan_list' as student_loan_list %}
+                    {% url 'loan_apply' as loan_apply %}
+                    {% url 'home_loan_detail' as home_loan_detail %}
+                    {% url 'student_loan_detail' as student_loan_detail %}
+                    {% url 'loan_apply_detail' as loan_apply_detail %}
+                    {% url 'home_loan_create' as home_loan_create %}
+                    {% url 'student_loan_create' as student_loan_create %}
+                    {% url 'loan_apply_create' as loan_apply_create %}
+                    {% url 'home_loan_update' as home_loan_update %}
+                    {% url 'student_loan_update' as student_loan_update %}
+                    {% url 'loan_apply_update' as loan_apply_update %}
+                    {% url 'home_loan_delete' as home_loan_delete %}
+                    {% url 'student_loan_delete' as student_loan_delete %}
+                    <li class="nav-item pcoded-hasmenu {% if request.path == home_loan_list or request.path == student_loan_list or request.path == loan_apply or request.path == home_loan_detail or request.path == student_loan_detail or request.path == loan_apply_detail or request.path == home_loan_create or request.path == student_loan_create or request.path == loan_apply_create or request.path == home_loan_update or request.path == student_loan_update or request.path == loan_apply_update or request.path == home_loan_delete or request.path == student_loan_delete %} active pcoded-trigger {% endif %}">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Loan</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="{% url 'home_loan_list' %}" >Home Loans</a></li>
+                            <li class=""><a href="{% url 'student_loan_list' %}" >Student Loans</a></li>
+                            <li class=""><a href="{% url 'loan_apply' %}" >Apply for Loan</a></li>
+                        </ul>
+                    </li>
+
+
+                    <!-- Financial Advisors  -->
+                    <li class="nav-item pcoded-hasmenu {% if request.resolver_match.url_name == 'member_list' or request.resolver_match.url_name == 'member_create' or request.resolver_match.url_name == 'member_update' or request.resolver_match.url_name == 'member_delete' or request.resolver_match.url_name == 'member_detail' %} active pcoded-trigger {% endif %}">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Financial Advisors</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="{% url 'member_list' %}" class="">All Members</a></li>
+                            <li class=""><a href="{% url 'member_create' %}" class="">Add Member</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- User Logs -->
+   
+                    {% url 'profile_create' as profile_create %}
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>User Admin</label>
+                    </li>
+                    {% if request.user.profile.id %}
+                    <li  class="nav-item {% if request.resolver_match.url_name == 'profile_detail' %} active  {% endif %}">
+                        <a href="{% url 'profile_detail' request.user.profile.id %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">My Profile</span></a>
+                    </li>
+                    <li  class="nav-item {% if request.resolver_match.url_name == 'profile_update' %} active {% endif %}">
+                        <a href="{% url 'profile_update' request.user.profile.pk %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Update Profile</span></a>
+                    </li>
+                    {% else %}
+                    <li  class="nav-item {% if request.resolver_match.url_name == 'profile_create' %} active  {% endif %}">
+                        <a href="{% url 'profile_create' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Create Profile</span></a>
+                    </li>
+
+                    {% endif %}
+
+
+                    {% if request.user|has_group:"logs" %}
+                    <li  class="nav-item {% if request.resolver_match.url_name == 'user_activity_list' %} active {% endif %} {% if request.resolver_match.url_name == 'user_activity_delete' %} active {% endif %}">
+                        <a href="{% url 'user_activity_list' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Logs</span></a>
+                    </li>
+                    {% endif %}
+
+                    {% if request.user|has_group:"download_data" %}
+                    <li  class="nav-item {% if request.resolver_match.url_name == 'data_center' %} active {% endif %}">
+                        <a href="{% url 'data_center' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Data Center</span></a>
+                    </li>
+                    {% endif %}
+
+                    
+                    {% if request.user|has_group:"api" %}
+                    <li  class="nav-item {% if request.resolver_match.url_name == 'api-overview' %} active {% endif %}">
+                        <a href="{% url 'api-overview' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">API</span></a>
+                    </li>
+                    {% endif %}
+
+                    {% if request.user.is_superuser %}
+                    <li  class="nav-item {% if request.resolver_match.url_name == 'employees_list' %} active {% endif %}">
+                        <a href="{% url 'employees_list' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Employees</span></a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>

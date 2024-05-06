@@ -1,0 +1,103 @@
+{% extends "layouts/base.html" %}
+{% block title %}Checking Account Management{% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Checking Account Management</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Total {{ count_total }} accounts</h5>
+                            </div>
+
+                            <div class="card-block">
+                                <div class='row'>
+                                    <div class="col-8">
+                                        <b>Sort By: -</b>
+                                        <a href="{% url 'checkingaccount_list' %}?orderby=account_number">Account Number</a> | 
+                                        <a href="{% url 'checkingaccount_list' %}?orderby=balance">Balance</a>
+                                    </div>
+                                    <div class="col-4">
+                                        <form class="form-inline mb-2">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <input type="text" 
+                                                       class="form-control" 
+                                                       name="search",
+                                                       placeholder="Search by account number or owner"
+                                                       value="{{ search }}">
+                                            </div>
+                                            <button type="submit" class="btn btn-secondary mb-2 btn-sm">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Account Number</th>
+                                                <th>Owner</th>
+                                                <th>Balance</th>
+                                                <th>Operations</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for account in checking_accounts %}
+                                            <tr>
+                                                <td>{{ account.account_number }}</td>
+                                                <td>{{ account.owner.username }}</td>
+                                                <td>{{ account.balance }}</td>
+                                                <td>
+                                                    <a href="{% url 'checkingaccount_detail' account.pk %}" class="badge badge-warning"><i class="feather icon-eye"></i> View</a>
+                                                    <a href="{% url 'checkingaccount_update' account.pk %}" class="badge badge-info"><i class="feather icon-edit"></i> Update</a>
+                                                    <a href="{% url 'checkingaccount_delete' account.pk %}" class="badge badge-danger"><i class="feather icon-trash-2"></i> Delete</a>
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                            <tr>
+                                                <td colspan="4">No accounts found.</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class='col-6'>
+                                        <a href="{% url 'checkingaccount_create' %}" class='btn btn-primary'>Add New Account</a>
+                                    </div>
+                                    <div class='col-6'>
+                                        <!-- Pagination placeholder if needed -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}

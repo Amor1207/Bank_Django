@@ -1,0 +1,130 @@
+{% extends "layouts/base.html" %}
+{% load book_extras %}  <!-- If you use static files like CSS or JS -->
+
+{% block title %}Transaction Records{% endblock %}
+
+{% block stylesheets %}
+<!-- You can add custom CSS here if needed -->
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">All Transaction Records</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Total {{ transactions|length }} records</h5>
+                            </div>
+                            <div class="card-block">
+                                <div class='row'>
+                                    <div class="col-8">
+                                        <b>Sort By:</b>
+                                        <a href="{% url 'transaction_list' %}?search={{ search_value }}&orderby=user">User</a> |
+                                        <a href="{% url 'transaction_list' %}?search={{ search_value }}&orderby=transaction_type">Type</a> |
+                                        <a href="{% url 'transaction_list' %}?search={{ search_value }}&orderby=amount">Amount</a> |
+                                        <a href="{% url 'transaction_list' %}?search={{ search_value }}&orderby=transaction_date">Date</a> |
+                                        <a href="{% url 'transaction_list' %}?search={{ search_value }}&orderby=status">Status</a>
+                                    </div>
+                                    <div class="col-auto">
+                                        <form class="form-inline mb-2">
+                                            <div class="form-group mb-2">
+                                                <input type="text" class="form-control" name="search" id='search' placeholder="Search transactions" value="{{ search_value }}">
+                                            </div>
+                                            <button type="submit" class="btn btn-secondary mb-2 ml-1 btn-sm">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="table-responsive table-hover">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>User</th>
+                                                <th>Type</th>
+                                                <th>Amount</th>
+                                                <th>Date</th>
+                                                <th>Completion Date</th>
+                                                <th>Status</th>
+                                                <th>Description</th>
+                                                <th>Payment Method</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for transaction in transactions %}
+                                            <tr>
+                                                <td>{{ transaction.user.username }}</td>
+                                                <td>{{ transaction.transaction_type }}</td>
+                                                <td>{{ transaction.amount }}</td>
+                                                <td>{{ transaction.transaction_date|date:"Y-m-d H:i" }}</td>
+                                                <td>{{ transaction.completion_date|date:"Y-m-d H:i" }}</td>
+                                                <td>{{ transaction.status }}</td>
+                                                <td>{{ transaction.description }}</td>
+                                                <td>{{ transaction.payment_method }}</td>
+                                                <td>
+                                                    <a href="{% url 'transaction_detail' transaction.pk %}" class="badge badge-warning"><i class="feather icon-eye"></i>&nbsp;View</a>
+                                                    <a href="{% url 'transaction_edit' transaction.pk %}" class="badge badge-info"><i class="feather icon-edit"></i>&nbsp;Edit</a>
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                            <tr>
+                                                <td colspan="9">No transactions found.</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class='col-6'>
+                                        <a href="{% url 'transaction_add' %}" class='btn btn-primary'>Add New Transaction</a>
+                                    </div>
+                                    <div class='col-6'>
+                                        <!-- Pagination -->
+                                        {% if transactions.has_other_pages %}
+                                        <ul class="pagination">
+                                            {% if transactions.has_previous %}
+                                            <li><a href="?page=1">&laquo; first</a></li>
+                                            <li><a href="?page={{ transactions.previous_page_number }}">previous</a></li>
+                                            {% endif %}
+                                            {% for num in transactions.paginator.page_range %}
+                                            {% if transactions.number == num %}
+                                            <li class="active"><span>{{ num }}</span></li>
+                                            {% else %}
+                                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% if transactions.has_next %}
+                                            <li><a href="?page={{ transactions.next_page_number }}">next</a></li>
+                                            <li><a href="?page={{ transactions.paginator.num_pages }}">last &raquo;</a></li>
+                                            {% endif %}
+                                        </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Confirm Deletion {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Student Loan Management</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Confirm Deletion</h5>
+                            </div>
+                            <div class="card-block">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <p>Are you sure you want to delete the Student Loan <strong>{{ studentloan.loan_number }}</strong> for <strong>{{ studentloan.school_name }}</strong>, studying <strong>{{ studentloan.course }}</strong>? This action cannot be undone.</p>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <input type="submit" value="Confirm Delete" class="btn btn-danger">
+                                        <a href="{% url 'studentloan_list' %}" class="btn btn-secondary">Cancel</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

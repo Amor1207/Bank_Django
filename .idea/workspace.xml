@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="79a1767f-2b82-4f90-8961-4f44779d01d1" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/book/migrations/0038_auto_20240502_2228.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/migrations/0039_auto_20240503_1618.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/checkingaccount/checkingaccount_confirm_delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/checkingaccount/checkingaccount_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/checkingaccount/checkingaccount_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/checkingaccount/checkingaccount_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/homepage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/home_loan_confirm_delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/home_loan_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/home_loan_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/home_loan_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/loan_apply_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/student_loan_confirm_delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/student_loan_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/student_loan_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loans/student_loan_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/savingsaccount/savingsaccount_confirm_delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/savingsaccount/savingsaccount_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/savingsaccount/savingsaccount_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/savingsaccount/savingsaccount_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/transactions/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/transactions/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/transactions/edit_transaction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/transactions/monthly_transactions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/transactions/transaction_list.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2fnpoFlzTa1At9Ja1yyyNwFmidZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Bank_Django" type="Python.DjangoServer" factoryName="Django server">
+      <module name="Bank_Django" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="79a1767f-2b82-4f90-8961-4f44779d01d1" name="更改" comment="" />
+      <created>1714446868589</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714446868589</updated>
+      <workItem from="1714446979019" duration="206000" />
+      <workItem from="1714447427866" duration="205000" />
+      <workItem from="1714447685696" duration="11892000" />
+      <workItem from="1714505792824" duration="21672000" />
+      <workItem from="1714588553700" duration="28928000" />
+      <workItem from="1714677035400" duration="29796000" />
+      <workItem from="1714762270660" duration="38171000" />
+      <workItem from="1714845168540" duration="26573000" />
+      <workItem from="1714879353096" duration="12436000" />
+      <workItem from="1714962365822" duration="11079000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

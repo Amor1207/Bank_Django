@@ -1,0 +1,74 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Apply for a Loan{% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/jquery.datetimepicker.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Loan Application Form</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Fill out the form to apply for a loan</h5>
+                            </div>
+                            <div class="card-block">
+
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                    
+                                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE -->
+{% block javascripts %}
+<script src="{% static 'assets/plugins/jquery/js/jquery-1.12.4.min.js' %}"></script>
+<script src="{% static 'assets/plugins/jquery/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'assets/plugins/jquery/js/jquery.datetimepicker.js' %}"></script>
+
+<script>
+$(function() {
+    // Initialize datetime picker for transaction_date and completion_date fields
+    $("#id_start_date, #id_due_date").datetimepicker({
+        format: 'Y-m-d H:i', // Specify your desired format
+        timepicker: true, // Enable time picker
+    });
+});
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,124 @@
+{% extends "layouts/base.html" %}
+{% load book_extras %}
+{% block title %} Management {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Book Management</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <!-- [ basic-table ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Total {{count_total}} books</h5>
+                            </div>
+
+                            {% show_messages %}
+
+                            <div class="card-block">
+                                <div class='row'>
+                                    <div class="col-8">
+                                        <b>Sort By : - </b>
+                                        <a href="{% url 'book_list' %}?search={{search}}&orderby=id">Id</a>  | 
+                                        <a href="{% url 'book_list' %}?search={{ search }}&orderby=author">Author</a> |  
+                                        <a href="{% url 'book_list' %}?search={{ search }}&orderby=title">Title</a> | 
+                                        <a href="{% url 'book_list' %}?search={{ search }}&orderby=quantity">Quantity</a>
+                                    </div>
+   
+                                    <div class="col-4">
+                                        <form class="form-inline mb-2">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <input type="text" 
+                                                       class="form-control" 
+                                                       name="search",
+                                                       id='search',
+                                                       placeholder="Search title / author",
+                                                       value={{search}}
+                                                       >
+                                            </div>
+                                            <button type="submit" class="btn btn-secondary mb-2 btn-sm">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive ">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Title</th>
+                                                <th>Author</th>
+                                                <th>Category</th>
+                                                <th>Status</th>
+                                                <th>Quantity</th>
+                                                <th>Location</th>
+                                                <th>Updated By</th>
+                                                <th>Operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% for book in books %}
+                                            <tr>
+                                                <th scope="row">{{book.id}}</th>
+                                                <td>{{book.title|slice:'10'}}</td>
+                                                <td>{{book.author}}</td>
+                                                <td>{{book.category}}</td>
+                                                <!-- <td>{{book.updated|date:"Y/m/d H:i" }}</td> -->
+                                                <td>{{book.get_status_display}}</td>
+                                                <td>{{book.quantity}}</td>
+                                                <td>{{book.floor_number}}{{book.bookshelf_number}}</td>
+                                                <td>{{book.updated_by}}  </td>
+                                                <td>                                
+                                                    <a href="{% url 'book_detail' book.id%}" class="badge badge-warning"><i class="feather icon-eye"></i></a>
+                                                    <a href="{% url 'book_update' book.id%}" class="badge badge-info"><i class="feather icon-edit"></i>&nbsp;Update</a>&nbsp;
+                                                    <a href="{% url 'book_delete' book.id%}" class="badge badge-danger"><i class="feather icon-trash-2"></i>&nbsp;Delete</a>&nbsp;
+                                                </td>
+
+                                            </tr>
+                                            {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class='col-4'>
+                                        <a href="{% url 'book_create' %}" class='btn btn-primary'>Add book</a>
+                                    </div>
+                                    <div class='col-8'>
+                                        {% show_pagination %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}
